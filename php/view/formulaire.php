@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Inscription</title>
+        <meta charset="utf-8" />
     </head>
     <body>
-        <form action="../model/data-processing.php" method="post">
+        <form action="../control/test-data-processing.php" method="post">
             <legend>Inscription</legend>
             <fieldset>
                 <label for="identifiant">Entrez votre identifiant : </label>
@@ -12,6 +14,8 @@
                 <input type="radio" id="homme" name="identifiant"/><br />
                 <label for="femme">Femme : </label>
                 <input type="radio" id="femme" name="identifiant"/><br />
+                <label for="email">Entrez votre email : </label>
+                <input type="email" id="email" name="email"/><br />
                 <label for="mot_de_passe">Entrez votre mot de passe : </label>
                 <input type="password" id="mot_de_passe" name="mot_de_passe"/><br />
                 <label for="mot_de_passe_verif">Confirmez votre mot de passe : </label>
