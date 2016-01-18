@@ -13,13 +13,9 @@ function AddUser($params = array()){
     include_once('./base.php');
     $db = connect();
 
-    try{
-        $result = $db->prepare("INSERT INTO user (date, email)
-                                VALUES (NOW(), ?)");
-        $result->bindParam(1, $params['email']);
-        $result->execute();
-    }
-    catch (Exception e){
-        echo "Erreur AddUser";
-    }
+    $result = $db->prepare("INSERT INTO user (date, email)
+                            VALUES (NOW(), ?)");
+    $result->bindParam(1, $params['email']);
+    $result->execute();
+
 }

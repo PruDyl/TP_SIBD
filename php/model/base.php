@@ -6,8 +6,6 @@
  * Time: 15:55
  */
 
-
-
 function connect()
 {
     try{
@@ -18,3 +16,4 @@ function connect()
         $e->getMessage();
     }
 }
+?>
