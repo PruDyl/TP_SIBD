@@ -1,3 +1,0 @@
-<?php
-    $accountModel = new AccountModel();
-

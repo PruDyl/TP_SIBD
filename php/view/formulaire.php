@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
     </head>
     <body>
-        <form action="./" method="post">
+        <form action="../control/data-processing.php" method="post">
             <legend>Inscription</legend>
             <fieldset>
                 <label for="identifiant">Entrez votre identifiant : </label>
