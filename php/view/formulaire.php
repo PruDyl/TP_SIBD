@@ -5,15 +5,15 @@
         <meta charset="utf-8" />
     </head>
     <body>
-        <form action="./" method="post">
+        <form action="../control/data-processing.php" method="post">
             <legend>Inscription</legend>
             <fieldset>
                 <label for="identifiant">Entrez votre identifiant : </label>
                 <input type="text" id="identifiant" name="identifiant"/><br />
                 <label for="homme">Homme : </label>
-                <input type="radio" id="homme" name="identifiant"/><br />
+                <input type="radio" id="homme" name="civilite" value="Homme"/><br />
                 <label for="femme">Femme : </label>
-                <input type="radio" id="femme" name="identifiant"/><br />
+                <input type="radio" id="femme" name="civilite" value="Femme"/><br />
                 <label for="email">Entrez votre email : </label>
                 <input type="email" id="email" name="email"/><br />
                 <label for="mot_de_passe">Entrez votre mot de passe : </label>

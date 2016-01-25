@@ -5,13 +5,13 @@ class AccountModel {
     * @param array $params
     * @return bool
     */
-    public function addUser($params = array()){
+    public function AddUser($params = array()){
         if (count($params) == 0)
-        return false;
+            return false;
 
         $db = connect();
         $result = $db->prepare("INSERT INTO user (date, email)
-        VALUES (NOW(), ?)");
+                                VALUES (NOW(), ?)");
         $result->bindParam(1, $params['email']);
         $result->execute();
     }
