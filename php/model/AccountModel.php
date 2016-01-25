@@ -37,7 +37,11 @@ class AccountModel {
         $result = $db->prepare("SELECT id
                                 FROM user
                                 WHERE email = '.$email.'");
+        $result = $result->fetch(PDO::FETCH_ASSOC);
 
-        return $result->execute();
+        if($result)
+            return true;
+        else
+            return false;
     }
 }
