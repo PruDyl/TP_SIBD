@@ -10,9 +10,15 @@ class AccountModel {
             return false;
 
         $db = connect();
-        $result = $db->prepare("INSERT INTO user (date, email)
-                                VALUES (NOW(), ?)");
-        $result->bindParam(1, $params['email']);
+        $result = $db->prepare("INSERT INTO user (identifiant, civilite, email, mot_de_passe, telephone, pays, date)
+                                VALUES (?, ?, ?, ?, ?, ?, NOW())");
+        $result->bindParam(1, $params['identifiant']);
+        $result->bindParam(2, $params['civilite']);
+        $result->bindParam(3, $params['email']);
+        $result->bindParam(4, sha1($params['mot_de_passe']));
+        $result->bindParam(5, $params['telephone']);
+        $result->bindParam(6, $params['pays']);
+
         $result->execute();
     }
 
