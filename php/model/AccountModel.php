@@ -31,4 +31,13 @@ class AccountModel {
 
         return $result = $request -> fetch(PDO::FETCH_ASSOC);
     }
+
+    public function isAlreadyRegistred($email = null){
+        $db = connect();
+        $result = $db->prepare("SELECT id
+                                FROM user
+                                WHERE email = '.$email.'");
+
+        return $result->execute();
+    }
 }
