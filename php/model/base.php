@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: v13000737
- * Date: 18/01/16
- * Time: 15:55
- */
-
 function connect()
 {
     try{
@@ -13,7 +6,6 @@ function connect()
         return $db;
     }
     catch(PDOException $e){
-         $e->getMessage();
+        $e->getMessage();
     }
 }
-?>

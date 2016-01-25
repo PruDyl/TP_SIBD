@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
     </head>
     <body>
-        <form action="../control/test-data-processing.php" method="post">
+        <form action="./" method="post">
             <legend>Inscription</legend>
             <fieldset>
                 <label for="identifiant">Entrez votre identifiant : </label>
@@ -26,7 +26,7 @@
                 <input type="text" id="pays" name="pays"/><br />
                 <label for="condition_generale">Acceptez les conditions générales : </label>
                 <input type="checkbox" name="condition_generale" value="" /><br />
-                <input type="submit" name="submit"/>
+                <input type="submit" name="submit" value="Inscription"/>
             </fieldset>
         </form>
     </body>
