@@ -6,7 +6,6 @@ class AccountControl {
      *
      */
     public function controlLogin() {
-        var_dump($_POST);
         $identifiant = htmlspecialchars($_POST['identifiant']);
         $mot_de_passe = htmlspecialchars($_POST['mot_de_passe']);
         $accountModel = new AccountModel();
@@ -36,8 +35,7 @@ class AccountControl {
         || $_POST['mot_de_passe_verif'] || $_POST['telephone'] || $_POST['pays']) == "")
             echo "Champ(s) non renseigné";
         elseif($_POST['mot_de_passe'] != $_POST['mot_de_passe_verif'])
-            echo "Champ(s) non renseigné";
-        "Vérification de mot de passe non identique";
+            echo "Vérification de mot de passe non identique";
         else {
             $accountmodel = new AccountModel();
             $accountmodel->AddUser($_POST);

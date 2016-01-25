@@ -22,8 +22,8 @@ class AccountModel {
                                  FROM user
                                  WHERE :attributeTest = :valueAttributetest");
         $request -> execute(array("attribute" => $attribute, "attributeTest" => $attributeTest, "valueAttributetest" => $valueAttributetest));
-        echo "<br>requete :";
-        var_dump( $request);
+        echo "<br>requete :<br>";
+        //var_dump( $request);
         if ($isTest) {
             if($result = $request -> fetch(PDO::FETCH_ASSOC))
                 return true;
