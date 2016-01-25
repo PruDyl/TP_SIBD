@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
     </head>
     <body>
-        <form action="../control/" method="post">
+        <form action="../control/test-pass.php" method="post">
             <legend>Connexion.php</legend>
             <fieldset>
                 <label for="identifiant">Entrez votre identifiant : </label>

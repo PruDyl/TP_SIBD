@@ -16,12 +16,21 @@ class AccountModel {
         $result->execute();
     }
 
-    public function getData($attribute, $attributeTest, $valueAttributetest) {
+    public function getData($attribute, $attributeTest, $valueAttributetest, $isTest = false) {
         $db = connect();
         $request = $db->prepare("SELECT :attribute
                                  FROM user
                                  WHERE :attributeTest = :valueAttributetest");
         $request -> execute(array("attribute" => $attribute, "attributeTest" => $attributeTest, "valueAttributetest" => $valueAttributetest));
-        return $result = $request -> fetch(PDO::FETCH_ASSOC);
+        echo "<br>requete :";
+        var_dump( $request);
+        if ($isTest) {
+            if($result = $request -> fetch(PDO::FETCH_ASSOC))
+                return true;
+            else
+                return false;
+        }
+        else
+            return $result = $request -> fetch(PDO::FETCH_ASSOC);
     }
 }
