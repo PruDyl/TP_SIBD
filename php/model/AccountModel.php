@@ -22,21 +22,25 @@ class AccountModel {
         $result->execute();
     }
 
-    public function getData($attribute, $attributeTest, $valueAttributetest, $isTest = false) {
+    public function isUserExist($identifiant, $mot_de_passe) {
+        $db = connect();
+        $request = $db->prepare("SELECT *
+                                 FROM user
+                                 WHERE identifiant = :identifiant
+                                 AND   mot_de_passe = :mot_de_passe");
+        $request -> execute(array("identifiant" => $identifiant, "mot_de_passe" => $mot_de_passe));
+        if($result = $request -> fetch())
+            return true;
+        else
+            return false;
+    }
+
+    public function getData($attribute, $attributeTest, $valueAttributetest) {
         $db = connect();
         $request = $db->prepare("SELECT :attribute
                                  FROM user
                                  WHERE :attributeTest = :valueAttributetest");
         $request -> execute(array("attribute" => $attribute, "attributeTest" => $attributeTest, "valueAttributetest" => $valueAttributetest));
-        echo "<br>requete :<br>";
-        //var_dump( $request);
-        if ($isTest) {
-            if($result = $request -> fetch(PDO::FETCH_ASSOC))
-                return true;
-            else
-                return false;
-        }
-        else
-            return $result = $request -> fetch(PDO::FETCH_ASSOC);
+        return $result = $request -> fetch(PDO::FETCH_ASSOC);
     }
 }
