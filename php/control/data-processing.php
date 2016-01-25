@@ -4,4 +4,5 @@
     include_once('../model/AccountModel.php');
     include_once('./AccountControl.php');
     $accountcontroller = new AccountControl();
-    $accountcontroller->controlInscription($_POST);
+    if(!$accountcontroller->isAlreadyRegistred($_POST['email']))
+        $accountcontroller->controlInscription($_POST);
