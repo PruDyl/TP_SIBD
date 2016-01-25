@@ -11,8 +11,18 @@ class AccountModel {
 
         $db = connect();
         $result = $db->prepare("INSERT INTO user (date, email)
-        VALUES (NOW(), ?)");
+                                VALUES (NOW(), ?)");
         $result->bindParam(1, $params['email']);
         $result->execute();
+    }
+
+    public function getData($attribute, $attributeTest, $valueAttributetest) {
+        $db = connect();
+        $request = $db->prepare("SELECT :attribute
+                                 FROM user
+                                 WHERE :attributeTest = :valueAttributetest");
+        $request -> execute(array("attribute" => $attribute, "attributeTest" => $attributeTest, "valueAttributetest" => $valueAttributetest));
+
+        return $result = $request -> fetch(PDO::FETCH_ASSOC);
     }
 }
