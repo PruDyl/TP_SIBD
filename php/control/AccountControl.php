@@ -35,7 +35,8 @@ class AccountControl {
             echo "Vérification de mot de passe non identique";
         else {
             $accountmodel = new AccountModel();
-            $accountmodel->AddUser($_POST);
+            if($accountmodel->isAlreadyRegistred($_POST['email']))
+                $accountmodel->AddUser($_POST);
         }
     }
 }
