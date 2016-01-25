@@ -34,9 +34,10 @@ class AccountControl {
 
         if(($_POST['identifiant'] || $_POST['civilite'] || $_POST['email'] || $_POST['mot_de_passe']
         || $_POST['mot_de_passe_verif'] || $_POST['telephone'] || $_POST['pays']) == "")
-            return "Champ(s) non renseigné";
+            echo "Champ(s) non renseigné";
         elseif($_POST['mot_de_passe'] != $_POST['mot_de_passe_verif'])
-            return "Vérification de mot de passe non identique";
+            echo "Champ(s) non renseigné";
+        "Vérification de mot de passe non identique";
         else {
             $accountmodel = new AccountModel();
             $accountmodel->AddUser($_POST);
