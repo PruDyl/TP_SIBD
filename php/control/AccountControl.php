@@ -3,7 +3,7 @@
 class AccountControl {
 
     /**
-     *
+     * Control before connection
      */
     public function controlLogin() {
         $identifiant = htmlspecialchars($_POST['identifiant']);
@@ -21,6 +21,7 @@ class AccountControl {
     }
 
     /**
+     * Control before add a new user to the database.
      * @param $_POST
      * @return bool|string
      */

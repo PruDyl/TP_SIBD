@@ -22,6 +22,12 @@ class AccountModel {
         $result->execute();
     }
 
+    /**
+     * Test if an user exits in the database.
+     * @param string $identifiant
+     * @param string $mot_de_passe
+     * @return bool
+     */
     public function isUserExist($identifiant, $mot_de_passe) {
         $db = connect();
         $request = $db->prepare("SELECT *
@@ -35,6 +41,13 @@ class AccountModel {
             return false;
     }
 
+    /**
+     * Get back data of a user
+     * @param string $attribute
+     * @param string $attributeTest
+     * @param string $valueAttributetest
+     * @return array
+     */
     public function getData($attribute, $attributeTest, $valueAttributetest) {
         $db = connect();
         $request = $db->prepare("SELECT :attribute
@@ -44,6 +57,13 @@ class AccountModel {
         return $result = $request -> fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Get back data of a user
+     * @param string $attribute
+     * @param string $attributeTest
+     * @param string $valueAttributetest
+     * @return array
+     */
     public function isAlreadyRegistred($email = null){
         $db = connect();
         $result = $db->prepare("SELECT id
