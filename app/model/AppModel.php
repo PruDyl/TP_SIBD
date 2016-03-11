@@ -7,17 +7,31 @@ class AppModel {
 	}
 
 	public function getData($table) {
-		$requestStr = '
+		$requestStr='
 		SELECT *
 		FROM '.$table.'
 		';
 		$request = $this->pdo->query($requestStr);
 		$result = $request->fetchAll(PDO::FETCH_ASSOC);
-		//var_dump($result);
 		return $result;
 	}
 
-	public function getUserData() {
-
+	public function connect($host, $db, $user, $password) {
+		$success = true;
+		try {
+		    $this->pdo= new PDO('mysql:host='.$host.';dbname='.$db.'',$user, $password);
+		} 
+		catch (PDOException $e) {
+			echo '<p>Identifiant incorrect</p>';
+			$success = false;
+		}
+		if($success) {
+			$_SESSION['user']=$_POST['pseudo'];
+			echo '
+			<SCRIPT LANGUAGE="JavaScript">
+				document.location.href="./"
+			</SCRIPT>';
+		}
+	
 	}
 }

@@ -10,12 +10,16 @@ class ShowController extends AppController{
     	$this->render('header');
 
     	$chevalInfos=$this->AppModel->getData('Cheval');
-    	if(isset($_SESSION)) {
+    	if(isset($_SESSION['user'])) {
     		$this->render('adminIndex', compact($chevalInfos));
     	}
     	else {
     		$this->render('loginForm');
-    	}
+            if(isset($_POST['pseudo']) && !empty($_POST['pseudo']) && isset($_POST['password']) && !empty($_POST['password'])) {
+                $this->AppModel->connect('localhost', 'sibd', $_POST['pseudo'], $_POST['password']);
+    	    }
+
+        }
 
     	$this->render('footer');
     	$this->render('script');
