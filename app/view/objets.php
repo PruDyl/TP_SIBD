@@ -1,4 +1,5 @@
 <?php
-foreach ($tableData as $value) {
+
+foreach ($params as $value) {
   echo $tableData . "<\br>";
 }
