@@ -8,6 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand title" href="./">Administration</a>
+            <span class="glyphicon glyphicon-off" href="./"></span>
         </div>
     </div>
 </nav>
