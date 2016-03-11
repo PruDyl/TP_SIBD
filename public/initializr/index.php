@@ -3,6 +3,7 @@
     require_once('../../core/utils/Autoloader.php');
     Autoloader::register();
     if(empty($_GET['page']) || $_GET['page']==='index' ) {
+
         $controller = new ShowController();
         $controller->index();
     }
