@@ -7,7 +7,7 @@ class AppModel {
 	}
 
 	public function getData($table) {
-		$requestStr = '
+		$requestStr='
 		SELECT *
 		FROM '.$table.'
 		';
@@ -49,5 +49,23 @@ class AppModel {
 				$request = $this->pdo->query($requestStr);
 				$result = $request->fetchAll(PDO::FETCH_NUM);
 				return $result;
+	}
+
+	public function connect($host, $db, $user, $password) {
+		$success = true;
+		try {
+		    $this->pdo= new PDO('mysql:host='.$host.';dbname='.$db.'',$user, $password);
+		} 
+		catch (PDOException $e) {
+			echo '<p>Identifiant incorrect</p>';
+			$success = false;
+		}
+		if($success) {
+			$_SESSION['user']=$_POST['pseudo'];
+			echo '
+			<SCRIPT LANGUAGE="JavaScript">
+				document.location.href="./"
+			</SCRIPT>';
+		}
 	}
 }
