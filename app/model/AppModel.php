@@ -19,4 +19,20 @@ class AppModel {
 	public function getUserData() {
 		
 	}
+	
+	/*
+	 * Crée un joueur
+	 * @param array[] contenant les attributs d'un player
+	 * @return bool true si ajout a réussi sinon false
+	 */
+	public function addPlayer($params = array()) {
+		if(count($params) == 0)
+			return false;
+		
+		$sql = "INSERT INTO	Player (pseudo, mail, mot_de_passe, prenom, nom, sexe, date_naissance, 
+									telephone, adresse_postal, avatar, description, adresse_site_web, 
+									argent, IP, date_heure_inscription, date_heure_derniere_connexion, 
+									id_compte_bancaire, operation_bancaire)
+				VALUES (";
+	}
 }
