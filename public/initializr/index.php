@@ -7,9 +7,9 @@
         $controller = new ShowController();
         $controller->index();
     }
-    else if ($_GET['page']==='objets' && !empty($_GET['table'])) {
+    else if ($_GET['page']==='objets' && !empty($_GET['table']) && !empty($_GET['p'])) {
         $controller = new ShowController();
-        $controller->objets($_GET['table']);  
+        $controller->objets($_GET['table'], $_GET['p']);
     }
 
 ?>

@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand title" href="./">Administration</a>
-            <a class="navbar-brand" href="../../app/view/objets.php">Objets</a>
+            <a class="navbar-brand" href="index.php?page=objets&table=joueur&p=1">Objets</a>
             <span class="glyphicon glyphicon-off" href="./"></span>
         </div>
     </div>
