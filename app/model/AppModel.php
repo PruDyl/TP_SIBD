@@ -7,12 +7,13 @@ class AppModel {
 	}
 
 	public function getData($table) {
-		$requestStr = "
+		$requestStr = '
 		SELECT *
-		FROM $table
-		";
+		FROM '.$table.'
+		';
 		$request = $this->pdo->query($requestStr);
 		$result = $request->fetchAll(PDO::FETCH_ASSOC);
+		//var_dump($result);
 		return $result;
 	}
 

@@ -25,10 +25,10 @@ class ShowController extends AppController{
     public function objets($table){
         $this->render('head');
         $this->render('header');
-
+        $dataTable = [];
         $tableData = $this->AppModel->getData($table);
-
-        $this->render('objets', compact($tableData));
+        array_push($dataTable, $tableData); 
+        $this->render('objets', $dataTable);
         $this->render('footer');
         $this->render('script');
     }

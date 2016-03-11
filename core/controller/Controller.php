@@ -8,7 +8,7 @@ class Controller {
     }
 
     protected function render($view, $params = []) {
-      extract($params);
+      var_dump($params);
       require_once($this->viewpath.$view.'.php');
       //require_once($this->viewpath.'template/'.$this->template.'.php');
     }
