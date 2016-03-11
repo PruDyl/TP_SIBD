@@ -7,8 +7,9 @@ class Controller {
     public function __construct() {
     }
 
-    protected function render($view) {
-        require_once($this->viewpath.$view.'.php');
-        //require_once($this->viewpath.'template/'.$this->template.'.php');
+    protected function render($view, $params = []) {
+      extract($params);
+      require_once($this->viewpath.$view.'.php');
+      //require_once($this->viewpath.'template/'.$this->template.'.php');
     }
 }

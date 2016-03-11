@@ -8,6 +8,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand title" href="./">Administration</a>
+            <a class="navbar-brand" href="../../app/view/objets.php">Objets</a>
         </div>
     </div>
 </nav>
