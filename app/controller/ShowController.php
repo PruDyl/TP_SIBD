@@ -21,4 +21,15 @@ class ShowController extends AppController{
     	$this->render('script');
         
     }
+
+    public function objets($table){
+        $this->render('head');
+        $this->render('header');
+
+        $tableData = $this->AppModel->getData($table);
+
+        $this->render('objets', compact($tableData));
+        $this->render('footer');
+        $this->render('script');
+    }
 }
