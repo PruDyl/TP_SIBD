@@ -26,12 +26,22 @@ class ShowController extends AppController{
         
     }
 
-    public function objets($table){
+    public function objets($table, $param){
         $this->render('head');
         $this->render('header');
         $dataTable = [];
-        $tableData = $this->AppModel->getData($table);
-        array_push($dataTable, $tableData); 
+        $perPage = 2;
+        $cPage = 1;
+        if (isset($_GET['p'])) {
+            $cPage = $_GET['p'];
+        }
+        else{
+            $cPage = 1;
+        }
+        $columnName = $this->AppModel->getColumnData($table);
+        $tableData = $this->AppModel->getDataLimit($table, $perPage, $cPage);
+        $countData = $this->AppModel->countData($table);
+        array_push($dataTable, $tableData, $columnName, $countData, $perPage, $cPage, $table);
         $this->render('objets', $dataTable);
         $this->render('footer');
         $this->render('script');
