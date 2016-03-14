@@ -243,4 +243,219 @@ class AppModel {
 			return false;
 	}
 	
+	/*
+	 * Modifie un joueur
+	 * @param array[] contenant les attributs d'un joueur
+	 * @return bool true si modif réussi sinon false
+	 */
+	public function modPlayer($params = array()) {
+		if(count($params) == 0)
+			return false;
+	
+		$sql = "UPDATE	Player 
+				SET		pseudo = '".$params['pseudo']."', mail = '".$params['mail']."', mot_de_passe = '".sha1($params['mot_de_passe'])."', 
+						prenom = '".$params['prenom']."', nom = '".$params['nom']."', sexe = '".$params['sexe']."', 
+						date_naissance = '".$params['date_naissance']."', telephone = '".$params['telephone']."', adresse_postal = '".$params['adresse_postal']."', 
+						avatar = '".$params['avatar']."', description = '".$params['description']."', adresse_site_web = '".$params['adresse_site_web']."',
+						argent = '".$params['argent']."', IP = '".$params['IP']."', date_heure_derniere_connexion = '".$params['date_heure_derniere_connexion']."',
+						id_compte_bancaire = '".$params['id_compte_bancaire']."', operation_bancaire = '".$params['operation_bancaire']."'
+				WHERE	id_player = '".$params['id_player']."'";
+	
+		if($this->pdo->exec($sql))
+			return true;
+		else
+			return false;
+	}
+	
+	/*
+	 * Modifie une tache
+	 * @param array[] contenant les attributs d'une tache
+	 * @return bool true si modif réussi sinon false
+	 */
+	public function modTache($params = array()) {
+		if(count($params) == 0)
+			return false;
+	
+		$sql = "UPDATE	Tache 
+				SET		id_item = '".$params['id_item']."', id_player = '".$params['id_player']."', 
+						action = '".$params['action']."', frequence = '".$params['frequence']."'
+				WHERE	id_tache = '".$params['id_tache']."'";
+	
+		if($this->pdo->exec($sql))
+			return true;
+		else
+			return false;
+	}
+	
+	/*
+	 * Modifie un journal
+	 * @param array[] contenant les attributs d'un journal
+	 * @return bool true si modif réussi sinon false
+	 */
+	public function modJournal($params = array()) {
+		if(count($params) == 0)
+			return false;
+	
+		$sql = "UPDATE	Journal 
+				SET		titre = '".$params['titre']."', texte = '".$params['texte']."', image = '".$params['image']."'
+				WHERE	id_journal = '".$params['id_journal']."'";
+	
+		if($this->pdo->exec($sql))
+			return true;
+		else
+			return false;
+	}
+	
+	/*
+	 * Modifie un item_concours
+	 * @param array[] contenant les attributs d'un item_concours
+	 * @return bool true si modif réussi sinon false
+	 */
+	public function modItemConcours($params = array()) {
+		if(count($params) == 0)
+			return false;
+	
+		$sql = "UPDATE	Item_concours 
+				SET		id_item = '".$params['id_item']."', id_concours = '".$params['id_concours']."', 
+						rang_concours = '".$params['rang_concours']."'
+				WHERE	id_item_concours = '".$params['id_item_concours']."'";
+	
+		if($this->pdo->exec($sql))
+			return true;
+		else
+			return false;
+	}
+	
+	/*
+	 * Modifie un item
+	 * @param array[] contenant les attributs d'un item
+	 * @return bool true si modif réussi sinon false
+	 */
+	public function modItem($params = array()) {
+		if(count($params) == 0)
+			return false;
+	
+		$sql = "UPDATE	Item 
+				SET		id_infrastructure = '".$params['id_infrastructure']."', id_cheval = '".$params['id_cheval']."', 
+						description = '".$params['description']."', type = '".$params['type']."', 
+						niveau = '".$params['niveau']."', famille = '".$params['famille']."', prix = '".$params['prix']."'
+				WHERE	id_item = '".$params['id_item']."'";
+	
+		if($this->pdo->exec($sql))
+			return true;
+		else
+			return false;
+	}
+	
+	/*
+	 * Modifie une infrastructure
+	 * @param array[] contenant les attributs d'une infrastructure
+	 * @return bool true si modif réussi sinon false
+	 */
+	public function modInfrastructure($params = array()) {
+		if(count($params) == 0)
+			return false;
+	
+		$sql = "UPDATE	Infrastructure 
+				SET		id_centre = '".$params['id_centre']."', id_club = '".$params['id_club']."', 
+						type_infrastructure = '".$params['type_infrastructure']."', niveau = '".$params['niveau']."',
+						description = '".$params['description']."', famille_infrastructure = '".$params['famille_infrastructure']."', 
+						prix = '".$params['prix']."', conso_ressources = '".$params['conso_ressources']."',
+						capacite_stock_item = '".$params['capacite_stock_item']."', capacite_stock_cheval = '".$params['capacite_stock_cheval']."', 
+						choix_batiment = '".$params['choix_batiment']."'
+				WHERE	id_infrastructure = '".$params['id_infrastructure']."'";
+	
+		if($this->pdo->exec($sql))
+			return true;
+		else
+			return false;
+	}
+	
+	/*
+	 * Modifie un concours
+	 * @param array[] contenant les attributs d'un concours
+	 * @return bool true si modif réussi sinon false
+	 */
+	public function modConcours($params = array()) {
+		if(count($params) == 0)
+			return false;
+	
+		$sql = "UPDATE	Concours 
+				SET		id_item = '".$params['id_item']."', id_infrastructure = '".$params['id_infrastructure']."', 
+						date_debut = '".$params['date_debut']."', date_fin = '".$params['date_fin']."'
+				WHERE	id_concours = '".$params['id_concours']."'";
+	
+		if($this->pdo->exec($sql))
+			return true;
+		else
+			return false;
+	}
+	
+	/*
+	 * Modifie un club hippique
+	 * @param array[] contenant les attributs d'un club hippique
+	 * @return bool true si modif réussi sinon false
+	 */
+	public function modClubHippique($params = array()) {
+		if(count($params) == 0)
+			return false;
+	
+		$sql = "UPDATE	Club_hippique 
+				SET		id_player = '".$params['id_player']."', id_infrastructure = '".$params['id_infrastructure']."', 
+						capacite_accueil = '".$params['capacite_accueil']."'
+				WHERE	id_club = '".$params['id_club']."')";
+	
+		if($this->pdo->exec($sql))
+			return true;
+		else
+			return false;
+	}
+	
+	/*
+	 * Modifie un cheval
+	 * @param array[] contenant les attributs d'un cheval
+	 * @return bool true si modif réussi sinon false
+	 */
+	public function modCheval($params = array()) {
+		if(count($params) == 0)
+			return false;
+	
+		$sql = "UPDATE	Player 
+				SET		id_player = '".$params['id_player']."', nom = '".$params['nom']."', race = '".$params['race']."', 
+						description = '".$params['description']."', resistance = '".$params['resistance']."', 
+						endurance = '".$params['endurance']."', detente = '".$params['detente']."', vitesse = '".$params['vitesse']."', 
+						sociabilite = '".$params['sociabilite']."', intelligence = '".$params['intelligence']."', 
+						temperament = '".$params['temperament']."', sante = '".$params['sante']."', moral = '".$params['moral']."', 
+						stress = '".$params['stress']."', fatigue = '".$params['fatigue']."', faim = '".$params['faim']."', 
+						proprete = '".$params['proprete']."', experience = '".$params['experience']."', niveau = '".$params['niveau']."', 
+						etat_general = '".$params['etat_general']."', blessures = '".$params['blessures']."', 
+						maladies = '".$params['maladies']."', parasites = '".$params['parasites']."'
+				WHERE	id_cheval = '".$params['id_cheval']."'";
+	
+		if($this->pdo->exec($sql))
+			return true;
+		else
+			return false;
+	}
+	
+	/*
+	 * Modifie un centre equestre
+	 * @param array[] contenant les attributs d'un centre equestre
+	 * @return bool true si modif réussi sinon false
+	 */
+	public function modCentreEquestre($params = array()) {
+		if(count($params) == 0)
+			return false;
+	
+		$sql = "UPDATE	Centre_equestre 
+				SET		id_player = '".$params['id_player']."', id_infrastructure = '".$params['id_infrastructure']."', 
+						id_tache = '".$params['id_tache']."', capacite = '".$params['capacite']."')
+				WHERE	id_centre = '".$params['id_centre']."'";
+	
+		if($this->pdo->exec($sql))
+			return true;
+		else
+			return false;
+	}
+	
 }
