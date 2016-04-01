@@ -1,14 +1,18 @@
 <?php
     session_start();
+    define('WEBROOT', str_replace('index.php','../../',$_SERVER['SCRIPT_NAME']));
+    define('ROOT', str_replace('index.php','../../',$_SERVER['SCRIPT_FILENAME']));
     require_once('../../core/utils/Autoloader.php');
+    
     Autoloader::register();
-    if(empty($_GET['page']) || $_GET['page']==='index' ) {
+    $controller = new ShowController();
+    
+    $params = [];
 
-        $controller = new ShowController();
-        $controller->index();
+    if (method_exists($controller,$_GET['page'])) {
+        call_user_func_array(array($controller, $_GET['page']), $params);
     }
-    else if ($_GET['page']==='objets' && !empty($_GET['table'])) {
-        $controller = new ShowController();
-        $controller->objets($_GET['table']);  
+    else {
+         $controller->index();
     }
 ?>
