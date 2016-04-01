@@ -26,7 +26,7 @@ class ShowController extends AppController{
         
     }
 
-    public function objets($table, $param){
+    public function objets($table, $param = []){
         $this->render('head');
         $this->render('header');
         $dataTable = [];
@@ -38,10 +38,17 @@ class ShowController extends AppController{
         else{
             $cPage = 1;
         }
-        $columnName = $this->AppModel->getColumnData($table);
-        $tableData = $this->AppModel->getDataLimit($table, $perPage, $cPage);
-        $countData = $this->AppModel->countData($table);
-        array_push($dataTable, $tableData, $columnName, $countData, $perPage, $cPage, $table);
+        if(isset($_GET['table'])) {
+            $columnName = $this->AppModel->getColumnData($_GET['table']);
+            $tableData = $this->AppModel->getDataLimit($_GET['table'], $perPage, $cPage);
+            $countData = $this->AppModel->countData($_GET['table']);
+            array_push($dataTable, $tableData, $columnName, $countData, $perPage, $cPage, $_GET['table']);
+                
+        }
+        else {
+            $tablesName = $this->AppModel->getTables();
+            array_push($dataTable, $tablesName);
+        }
         $this->render('objets', $dataTable);
         $this->render('footer');
         $this->render('script');

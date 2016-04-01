@@ -6,6 +6,14 @@ class AppModel {
 		$this->pdo= new PDO('mysql:host=localhost;dbname=sibd', 'root', 'root');
 	}
 
+	public function getTables() {
+		$requestStr='SHOW tables';
+		$request = $this->pdo->query($requestStr);
+		$result = $request->fetchAll(PDO::FETCH_NUM);
+		//var_dump($result);
+		return $result;
+	}
+
 	public function getData($table) {
 		$requestStr='
 		SELECT *

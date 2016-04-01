@@ -6,9 +6,13 @@
     
     Autoloader::register();
     $controller = new ShowController();
-    
-    $params = [];
 
-    if (method_exists($controller,$_GET['page'])) {
-        call_user_func_array(array($controller, $_GET['page']), $params);
+    if(isset($_GET['page'])) {
+        if (method_exists($controller,$_GET['page'])) {
+            call_user_func_array(array($controller, $_GET['page']), $_GET);
+        } 
     }
+    else {
+        $controller->index();
+    }
+   
