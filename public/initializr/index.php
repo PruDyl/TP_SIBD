@@ -12,7 +12,3 @@
     if (method_exists($controller,$_GET['page'])) {
         call_user_func_array(array($controller, $_GET['page']), $params);
     }
-    else {
-         $controller->index();
-    }
-?>
