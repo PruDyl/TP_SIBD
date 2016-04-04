@@ -5,17 +5,15 @@ class Autoloader{
     }
 
     static function autoload($class) {
+
         if( file_exists (ROOT.'app/controller/'.$class.'.php')) {
-            $path.=ROOT.'app/controller/'.$class.'.php';
-            require($path);
+            require(ROOT.'app/controller/'.$class.'.php');
         }
         else if(file_exists(ROOT.'core/controller/'.$class.'.php')) {
-            $path.=ROOT.'core/controller/'.$class.'.php';
-            require($path);
+            require(ROOT.'core/controller/'.$class.'.php');
         }
         else if(file_exists(ROOT.'app/model/'.$class.'.php')) {
-            $path.=ROOT.'app/model/'.$class.'.php';
-            require($path);
+            require(ROOT.'app/model/'.$class.'.php');
         }
     }
 }
