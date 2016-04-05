@@ -9,14 +9,21 @@ class ShowController extends AppController{
     	$this->render('head');
     	$this->render('header');
 
-    	$chevalInfos=$this->AppModel->getData('Cheval');
     	if(isset($_SESSION['user'])) {
-    		$this->render('adminIndex', compact($chevalInfos));
+    		;
     	}
     	else {
     		$this->render('loginForm');
-            if(isset($_POST['pseudo']) && !empty($_POST['pseudo']) && isset($_POST['password']) && !empty($_POST['password'])) {
-                $this->AppModel->connect('localhost', 'sibd', $_POST['pseudo'], $_POST['password']);
+            if(isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
+                if ($this->AppModel->connect('localhost', 'mysql', $_POST['pseudo'], $_POST['password'])) {
+                    echo '
+                    <SCRIPT LANGUAGE="JavaScript">
+                        document.location.href="./"
+                    </SCRIPT>';
+                }
+                else {
+                    echo '<div class="row"><div class="alert alert-warning col-md-4 col-md-offset-4" role="alert">Identifiant incorrect</div></div>';
+                }
     	    }
 
         }

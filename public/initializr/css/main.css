@@ -7,14 +7,29 @@
 .title {
 	color: white !important;
 }
+
 td
 {
     text-align: center;
 }
+
 th
 {
 	font-weight: bold;
 	text-align: center;
+}
+.container {
+	width: 100%;
+}
+
+footer
+{
+	text-align: center;
+}
+
+.alert
+{
+	text-align: center !important;
 }
 
 

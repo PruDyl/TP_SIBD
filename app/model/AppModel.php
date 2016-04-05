@@ -65,16 +65,13 @@ class AppModel {
 		    $this->pdo= new PDO('mysql:host='.$host.';dbname='.$db.'',$user, $password);
 		} 
 		catch (PDOException $e) {
-			echo '<p>Identifiant incorrect</p>';
+			echo $e->getMessage();
 			$success = false;
 		}
 		if($success) {
 			$_SESSION['user']=$_POST['pseudo'];
-			echo '
-			<SCRIPT LANGUAGE="JavaScript">
-				document.location.href="./"
-			</SCRIPT>';
 		}
+		return $success;
 	}
 	
 	/*
