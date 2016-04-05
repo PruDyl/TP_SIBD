@@ -30,7 +30,7 @@ class ShowController extends AppController{
         $this->render('head');
         $this->render('header');
         $dataTable = [];
-        $perPage = 2;
+        $perPage = 15;
         $cPage = 1;
         if (isset($_GET['p'])) {
             $cPage = $_GET['p'];

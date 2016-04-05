@@ -7,9 +7,15 @@
 .title {
 	color: white !important;
 }
-
-
-
+td
+{
+    text-align: center;
+}
+th
+{
+	font-weight: bold;
+	text-align: center;
+}
 
 
 
