@@ -143,14 +143,14 @@ class AppModel {
 		
 		$sql = "INSERT INTO	Player (pseudo, mail, mot_de_passe, prenom, nom, sexe, date_naissance, 
 									telephone, adresse_postal, avatar, description, adresse_site_web, 
-									argent, IP, date_heure_inscription, date_heure_derniere_connexion, 
-									id_compte_bancaire, operation_bancaire)
+									argent, IP, date_heure_inscription, id_compte_bancaire, 
+									operation_bancaire)
 				VALUES ('".$params['pseudo']."', '".$params['mail']."', '".sha1($params['mot_de_passe'])."', 
 						'".$params['prenom']."', '".$params['nom']."', '".$params['sexe']."', 
 						'".$params['date_naissance']."', '".$params['telephone']."', '".$params['adresse_postal']."', 
 						'".$params['avatar']."', '".$params['description']."', '".$params['adresse_site_web']."', 
-						'".$params['argent']."', '".$params['IP']."', '".$params['date_heure_inscription']."', 
-						'".$params['date_heure_derniere_connexion']."', '".$params['id_compte_bancaire']."', '".$params['operation_bancaire']."')";
+						'".$params['argent']."', '".$params['IP']."', NOW(), 
+						'".$params['id_compte_bancaire']."', '".$params['operation_bancaire']."')";
 		
 		if($this->pdo->exec($sql))
 			return $this->pdo->lastInsertId();
