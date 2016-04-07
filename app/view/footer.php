@@ -1,3 +1,3 @@
 <footer>
-    <p>&copy; Company 2015</p>
+    <p>&copy; Groupe Dylan 2016</p>
 </footer>

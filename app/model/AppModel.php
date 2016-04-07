@@ -1,10 +1,69 @@
 <?php
 class AppModel {
+	private $bd = 'sibd';
+	private $user = 'root';
+	private $password = 'root';
 	private $pdo;
 
 	public function __CONSTRUCT(){
-		$this->pdo= new PDO('mysql:host=localhost;dbname=sibd', 'root', 'root');
+		$this->pdo= new PDO('mysql:host=localhost;dbname='.$this->bd.'', $this->user, $this->password);
 	}
+
+	public function setPdo($bd, $user, $password) {
+		$this->pdo= new PDO('mysql:host=localhost;dbname='.$bd.'', $user, $password);
+	}
+
+	public function getUserPrivilleges() {
+		$this->setPdo('mysql', $this->user, $this->password);
+		$requestStr='SELECT *
+					 FROM user
+					 WHERE User = "'.$_SESSION['user'].'"';
+		$request = $this->pdo->query($requestStr);
+		$result = $request->fetchAll(PDO::FETCH_NUM);
+		//var_dump($result);
+		$this->setPdo('sibd', $this->user, $this->password);
+		return $result;
+	}
+
+    public function getAverageData($data, $id, $table) {
+        $requestStr='
+		SELECT ROUND(SUM('.$data.')/COUNT('.$id.'), 0)
+		FROM '.$table.'
+		';
+
+        $request = $this->pdo->query($requestStr);
+        $result = $request->fetchAll(PDO::FETCH_NUM);
+        //var_dump($result);
+        return $result;
+    }
+
+    public function getMaxData($data, $table) {
+        $requestStr='
+		SELECT *
+		FROM '.$table.'
+		WHERE '.$data.'= (SELECT MAX('.$data.')
+		                  FROM '.$table.' )
+		';
+
+        $request = $this->pdo->query($requestStr);
+        $result = $request->fetchAll(PDO::FETCH_NUM);
+        //var_dump($result);
+        return $result;
+    }
+
+    public function getMinData($data, $table) {
+        $requestStr='
+		SELECT *
+		FROM '.$table.'
+		WHERE '.$data.'= (SELECT MIN('.$data.')
+		                  FROM '.$table.' )
+		';
+
+        $request = $this->pdo->query($requestStr);
+        $result = $request->fetchAll(PDO::FETCH_NUM);
+        //var_dump($result);
+        return $result;
+    }
 
 	public function getTables() {
 		$requestStr='SHOW tables';
@@ -59,13 +118,12 @@ class AppModel {
 				return $result;
 	}
 
-	public function connect($host, $db, $user, $password) {
+	public function connect($user, $password) {
 		$success = true;
 		try {
-		    $this->pdo= new PDO('mysql:host='.$host.';dbname='.$db.'',$user, $password);
+		    $this->pdo= new PDO('mysql:host=localhost;dbname=sibd',$user, $password);
 		} 
 		catch (PDOException $e) {
-			echo $e->getMessage();
 			$success = false;
 		}
 		if($success) {

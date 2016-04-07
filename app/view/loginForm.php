@@ -1,6 +1,6 @@
 <br />
 <div class="row">
-	<form method="post" action="./index.php" class="col-md-4 col-md-offset-4">
+	<form method="post" action="./index.php" class="col-md-3 col-md-offset-4">
 		<div class="input-group input-group-sm">
 			<span class="input-group-addon" id="sizing-addon2">Login</span>
 			<input class="form-control" type="text" id="pseudo" name="pseudo" />

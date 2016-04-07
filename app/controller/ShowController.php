@@ -9,13 +9,22 @@ class ShowController extends AppController{
     	$this->render('head');
     	$this->render('header');
 
+        $dataTable = [];
+
     	if(isset($_SESSION['user'])) {
-    		;
+            $userPriv = $this->AppModel->getUserPrivilleges();
+            $nbUsers = $this->AppModel->countData('joueur');
+            $averageMoney = $this->AppModel->getAverageData('argent','id_joueur', 'joueur');
+            $maxMoney = $this->AppModel->getMaxData('argent', 'joueur');
+            $minMoney = $this->AppModel->getMinData('argent', 'joueur');
+            array_push($dataTable, $userPriv, $nbUsers, $averageMoney, $maxMoney, $minMoney);
+            $this->render('adminIndex', $dataTable);
     	}
     	else {
     		$this->render('loginForm');
             if(isset($_POST['pseudo']) && !empty($_POST['pseudo'])) {
-                if ($this->AppModel->connect('localhost', 'mysql', $_POST['pseudo'], $_POST['password'])) {
+                if ($this->AppModel->connect($_POST['pseudo'], $_POST['password'])) {
+                    $this->AppModel->setPdo('sibd', $_POST['pseudo'], $_POST['password']);
                     echo '
                     <SCRIPT LANGUAGE="JavaScript">
                         document.location.href="./"
