@@ -498,183 +498,253 @@ class AppModel {
 	}
 	
 	/*
-	 * Supprime un joueur
-	 * @param int contenant l'id d'un joueur
+	 * Supprime un ou des joueurs
+	 * @param array contenant le ou les id de joueurs
 	 * @return bool true si suppression réussi sinon false
 	 */
 	public function SuprPlayer($id_player = 0) {
-		if($id_player == 0)
+		if(count($id_player) == 0) {
 			return false;
-	
-		$sql = "DELETE FROM	Player
-				WHERE		id_player = '".$id_player."'";
-	
-		if($this->pdo->exec($sql))
-			return true;
-		else
-			return false;
+		} elseif(count($id_player) > 0) {
+			$sql = "DELETE FROM	Player
+					WHERE		id_player = '".$id_player[0]."' ";
+		
+			if(count($id_player) > 1) {
+				foreach ($id_player as $id) {
+					$sql .= "OR	id_player = '".$id."' ";
+				}
+			}
+		
+			if($this->pdo->exec($sql))
+				return true;
+			else
+				return false;
+		}
 	}
 	
 	/*
-	 * Supprime une tache
-	 * @param int contenant l'id d'une tache
+	 * Supprime une ou des taches
+	 * @param array contenant le ou les id de taches
 	 * @return bool true si suppression réussi sinon false
 	 */
-	public function SuprTache($id_tache = 0) {
-		if($id_tache == 0)
+	public function SuprTache($id_tache = array()) {
+		if(count($id_tache) == 0) {
 			return false;
-	
-		$sql = "DELETE FROM	Tache
-				WHERE		id_tache = '".$id_tache."'";
-	
-		if($this->pdo->exec($sql))
-			return true;
-		else
-			return false;
+		} elseif(count($id_tache) > 0) {
+			$sql = "DELETE FROM	Tache
+					WHERE		id_tache = '".$id_tache[0]."' ";
+		
+			if(count($id_tache) > 1) {
+				foreach ($id_tache as $id) {
+					$sql .= "OR	id_tache = '".$id."' ";
+				}
+			}
+		
+			if($this->pdo->exec($sql))
+				return true;
+			else
+				return false;
+		}
 	}
 	
 	/*
-	 * Supprime un journal
-	 * @param int contenant l'id d'un journal
+	 * Supprime un ou des journaux
+	 * @param array contenant le ou les id de journaux
 	 * @return bool true si suppression réussi sinon false
 	 */
-	public function SuprJournal($id_journal = 0) {
-		if($id_journal == 0)
+	public function SuprJournal($id_journal = array()) {
+		if(count($id_journal) == 0) {
 			return false;
-	
-		$sql = "DELETE FROM	Journal
-				WHERE		id_journal = '".$id_journal."'";
-	
-		if($this->pdo->exec($sql))
-			return true;
-		else
-			return false;
+		} elseif(count($id_journal) > 0) {
+			$sql = "DELETE FROM	Journal
+					WHERE		id_journal = '".$id_journal[0]."' ";
+		
+			if(count($id_journal) > 1) {
+				foreach ($id_journal as $id) {
+					$sql .= "OR	id_journal = '".$id."' ";
+				}
+			}
+		
+			if($this->pdo->exec($sql))
+				return true;
+			else
+				return false;
+		}
 	}
 	
 	/*
-	 * Supprime un item_concours
-	 * @param int contenant l'id d'un item_concours
+	 * Supprime un ou des item_concours
+	 * @param array contenant le ou les id d'item_concours
 	 * @return bool true si suppression réussi sinon false
 	 */
-	public function SuprItemConcours($id_item_concours = 0) {
-		if($id_item_concours == 0)
+	public function SuprItemConcours($id_item_concours = array()) {
+		if(count($id_item_concours) == 0) {
 			return false;
-	
-		$sql = "DELETE FROM	Item_concours
-				WHERE		id_item_concours = '".$id_item_concours."'";
-	
-		if($this->pdo->exec($sql))
-			return true;
-		else
-			return false;
+		} elseif(count($id_item_concours) > 0) {
+			$sql = "DELETE FROM	Item_concours
+					WHERE		id_item_concours = '".$id_item_concours[0]."' ";
+		
+			if(count($id_item_concours) > 1) {
+				foreach ($id_item_concours as $id) {
+					$sql .= "OR	id_item_concours = '".$id."' ";
+				}
+			}
+		
+			if($this->pdo->exec($sql))
+				return true;
+			else
+				return false;
+		}
 	}
 	
 	/*
-	 * Supprime un item
-	 * @param int contenant l'id d'un item
+	 * Supprime un ou des item(s)
+	 * @param array contenant le ou les id d'items
 	 * @return bool true si suppression réussi sinon false
 	 */
-	public function SuprItem($id_item = 0) {
-		if($id_item == 0)
+	public function SuprItem($id_item = array()) {
+		if(count($id_item) == 0) {
 			return false;
-	
-		$sql = "DELETE FROM	Item
-				WHERE		id_item = '".$id_item."'";
-	
-		if($this->pdo->exec($sql))
-			return true;
-		else
-			return false;
+		} elseif(count($id_item) > 0) {
+			$sql = "DELETE FROM	Item
+					WHERE		id_item = '".$id_item[0]."' ";
+		
+			if(count($id_item) > 1) {
+				foreach ($id_item as $id) {
+					$sql .= "OR	id_item = '".$id."' ";
+				}
+			}
+		
+			if($this->pdo->exec($sql))
+				return true;
+			else
+				return false;
+		}
 	}
 	
 	/*
-	 * Supprime une infrastructure
-	 * @param int contenant l'id d'une infrastructure
+	 * Supprime une ou des infrastructures
+	 * @param array contenant le ou les id d'infrastructures
 	 * @return bool true si suppression réussi sinon false
 	 */
-	public function SuprInfrastructure($id_infrastructure = 0) {
-		if($id_infrastructure == 0)
+	public function SuprInfrastructure($id_infrastructure = array()) {
+		if(count($id_infrastructure) == 0) {
 			return false;
-	
-		$sql = "DELETE FROM	Infrastructure
-				WHERE		id_infrastructure = '".$id_infrastructure."'";
-	
-		if($this->pdo->exec($sql))
-			return true;
-		else
-			return false;
+		} elseif(count($id_infrastructure) > 0) {
+			$sql = "DELETE FROM	Infrastructure
+					WHERE		id_infrastructure = '".$id_infrastructure[0]."' ";
+		
+			if(count($id_infrastructure) > 1) {
+				foreach ($id_infrastructure as $id) {
+					$sql .= "OR	id_infrastructure = '".$id."' ";
+				}
+			}
+		
+			if($this->pdo->exec($sql))
+				return true;
+			else
+				return false;
+		}
 	}
 	
 	/*
-	 * Supprime un concours
-	 * @param int contenant l'id d'un concours
+	 * Supprime un ou des concours
+	 * @param array contenant le ou les id de concours
 	 * @return bool true si suppression réussi sinon false
 	 */
-	public function SuprConcours($id_concours = 0) {
-		if($id_concours == 0)
+	public function SuprConcours($id_concours = array()) {
+		if(count($id_concours) == 0) {
 			return false;
-	
-		$sql = "DELETE FROM	Concours
-				WHERE		id_concours = '".$id_concours."'";
-	
-		if($this->pdo->exec($sql))
-			return true;
-		else
-			return false;
+		} elseif(count($id_concours) > 0) {
+			$sql = "DELETE FROM	Concours
+					WHERE		id_concours = '".$id_concours[0]."' ";
+		
+			if(count($id_concours) > 1) {
+				foreach ($id_concours as $id) {
+					$sql .= "OR	id_concours = '".$id."' ";
+				}
+			}
+		
+			if($this->pdo->exec($sql))
+				return true;
+			else
+				return false;
+		}
 	}
 	
 	/*
-	 * Supprime un club hippique
-	 * @param int contenant l'id d'un club hippique
+	 * Supprime un ou des clubs hippiques
+	 * @param array contenant le ou les id de clubs hippiques
 	 * @return bool true si suppression réussi sinon false
 	 */
-	public function SuprClubHippique($id_club = 0) {
-		if($id_club == 0)
+	public function SuprClubHippique($id_club = array()) {
+		if(count($id_club) == 0) {
 			return false;
-	
-		$sql = "DELETE FROM	Club_hippique
-				WHERE		id_club = '".$id_club."'";
-	
-		if($this->pdo->exec($sql))
-			return true;
-		else
-			return false;
+		} elseif(count($id_club) > 0) {
+			$sql = "DELETE FROM	Club_hippique
+					WHERE		id_club = '".$id_club[0]."' ";
+		
+			if(count($id_club) > 1) {
+				foreach ($id_club as $id) {
+					$sql .= "OR	id_club = '".$id."' ";
+				}
+			}
+		
+			if($this->pdo->exec($sql))
+				return true;
+			else
+				return false;
+		}
 	}
 	
 	/*
-	 * Supprime un cheval
-	 * @param int contenant l'id d'un cheval
+	 * Supprime un ou des chevaux
+	 * @param array contenant le ou les id de chevaux
 	 * @return bool true si suppression réussi sinon false
 	 */
-	public function SuprCheval($id_cheval = 0) {
-		if($id_cheval == 0)
+	public function SuprCheval($id_cheval = array()) {
+		if(count($id_cheval) == 0) {
 			return false;
-	
-		$sql = "DELETE FROM	Cheval
-				WHERE		id_cheval = '".$id_cheval."'";
-	
-		if($this->pdo->exec($sql))
-			return true;
-		else
-			return false;
+		} elseif(count($id_cheval) > 0) {
+			$sql = "DELETE FROM	Cheval
+					WHERE		id_cheval = '".$id_cheval[0]."' ";
+		
+			if(count($id_cheval) > 1) {
+				foreach ($id_cheval as $id) {
+					$sql .= "OR	id_cheval = '".$id."' ";
+				}
+			}
+				
+			if($this->pdo->exec($sql))
+				return true;
+			else
+				return false;
+		}
 	}
 	
 	/*
-	 * Supprime un centre equestre
-	 * @param int contenant l'id d'un centre equestre
+	 * Supprime un ou des centres equestres
+	 * @param array contenant le ou les id de centres equestres
 	 * @return bool true si suppression réussi sinon false
 	 */
-	public function SuprCentreEquestre($id_centre = 0) {
-		if($id_centre == 0)
+	public function SuprCentreEquestre($id_centre = array()) {
+		if(count($id_centre) == 0) {
 			return false;
-	
-		$sql = "DELETE FROM	Centre_equestre
-				WHERE		id_centre = '".$id_centre."'";
-	
-		if($this->pdo->exec($sql))
-			return true;
-		else
-			return false;
+		} elseif(count($id_centre) > 0) {
+			$sql = "DELETE FROM	Centre_equestre
+					WHERE		id_centre = '".$id_centre[0]."' ";
+		
+			if(count($id_centre) > 1) {
+				foreach ($id_centre as $id) {
+					$sql .= "OR	id_centre = '".$id."' ";
+				}
+			}
+			
+			if($this->pdo->exec($sql))
+				return true;
+			else
+				return false;
+		}
 	}
 	
 }
