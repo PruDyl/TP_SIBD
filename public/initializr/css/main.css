@@ -25,6 +25,11 @@ th
 	text-align: center;
 }
 
+tr
+{
+	border: 1px solid #ddd !important;
+}
+
 .container {
 	width: 100%;
 }

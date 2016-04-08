@@ -6,11 +6,11 @@ class AppModel {
 	private $pdo;
 
 	public function __CONSTRUCT(){
-		$this->pdo= new PDO('mysql:host=localhost;dbname='.$this->bd.'', $this->user, $this->password);
+		$this->pdo= new PDO('mysql:host=localhost;dbname='.$this->bd.'', $this->user, $this->password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 	}
 
 	public function setPdo($bd, $user, $password) {
-		$this->pdo= new PDO('mysql:host=localhost;dbname='.$bd.'', $user, $password);
+		$this->pdo= new PDO('mysql:host=localhost;dbname='.$bd.'', $user, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 	}
 
 	public function getUserPrivilleges() {

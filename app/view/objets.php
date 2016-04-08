@@ -1,3 +1,4 @@
+<section>
 <?php
 
 /* --- Déclaration des variables --- */
@@ -9,7 +10,11 @@ if(isset($_GET['table'])) {
 	$nbPage = ceil($nbrData/$params[3]);
 
 	/* --- Manipulation --- */
-	echo "<div class='table-responsive'><table border=1 class='table sortable' id='table' name='".$_GET['table']."'><tr><th></th>";
+	echo "
+	<div class='page-header'>
+        <h3>Table ".$_GET['table']."</h3>
+    </div>
+	<div class='table-responsive'><table border=1 class='table sortable' id='table' name='".$_GET['table']."'><tr><th></th>";
 	foreach ($d as $d1) {
 	  foreach ($d1 as $tr) {
 	    echo "<th> ". $tr . " </th>"; 
@@ -35,15 +40,22 @@ if(isset($_GET['table'])) {
 	echo '<button onclick="SuprElmnt();">Supprimer</button><br/><br/>';
 }
 else {
-	echo '<p>Liste des tables : </p>';
+	echo '<div class="page-header"><h3>Liste des tables</h3></div>';
 	$appmodel = new AppModel;
 	$listTables = $appmodel->getTables();
 	
-	$html =  '<ul>';
+	$html =  '
+	<div class="row">
+		<div class="col-md-6 ol-md-offset-4">
+			<div class="list-group">';
 	foreach($listTables as $table) {
- 		$html .= '<li><a href="index.php?page=objets&table='.$table[0].'">'.$table[0].'</a></li>';
+ 		$html .= '
+ 			<a class="list-group-item" href="index.php?page=objets&table='.$table[0].'">'.$table[0].'</a>';
+	
 	}
-	$html .= '</ul>';
+	$html .= '</div></div></div>';
 	
 	echo $html;
 }
+?>
+</section>
