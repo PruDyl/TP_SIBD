@@ -94,11 +94,11 @@ switch ($_POST['action']) {
 		}
 		break;
 		
-	case "ajax_supr_Player":
+	case "ajax_supr_Joueur":
 		$_POST['id'] = explode(",", $_POST['id']);
 		$retour['erreur'] = true;
 		$retour['msg'] = "Erreur lors de la suppression.";
-		if($appModel->SuprPlayer($_POST['id'])){
+		if($appModel->SuprJoueur($_POST['id'])){
 			$retour['erreur'] = false;
 			$retour['msg'] = "Joueur(s) supprimé(s).";
 		}

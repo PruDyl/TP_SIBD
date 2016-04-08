@@ -560,16 +560,16 @@ class AppModel {
 	 * @param array contenant le ou les id de joueurs
 	 * @return bool true si suppression réussi sinon false
 	 */
-	public function SuprPlayer($id_player = 0) {
+	public function SuprJoueur($id_player = 0) {
 		if(count($id_player) == 0) {
 			return false;
 		} elseif(count($id_player) > 0) {
-			$sql = "DELETE FROM	Player
-					WHERE		id_player = '".$id_player[0]."' ";
+			$sql = "DELETE FROM	Joueur
+					WHERE		id_joueur = '".$id_player[0]."' ";
 		
 			if(count($id_player) > 1) {
 				foreach ($id_player as $id) {
-					$sql .= "OR	id_player = '".$id."' ";
+					$sql .= "OR	id_joueur = '".$id."' ";
 				}
 			}
 		
