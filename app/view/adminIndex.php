@@ -5,7 +5,7 @@
    <div  class="row">
        <div class="col-md-6">
            <h4> Vos droits sont : </h4>
-           <table class="table">
+           <table class="table sortable" id="table">
                <thead>
                <th>
                    Droit

@@ -4,7 +4,7 @@ class ShowController extends AppController{
 		parent::__construct();
 		$this->loadModel('AppModel');
 	}
-	
+
     public function index() {
     	$this->render('head');
     	$this->render('header');
@@ -39,7 +39,7 @@ class ShowController extends AppController{
 
     	$this->render('footer');
     	$this->render('script');
-        
+
     }
 
     public function objets($table, $param = []){
@@ -59,7 +59,7 @@ class ShowController extends AppController{
             $tableData = $this->AppModel->getDataLimit($_GET['table'], $perPage, $cPage);
             $countData = $this->AppModel->countData($_GET['table']);
             array_push($dataTable, $tableData, $columnName, $countData, $perPage, $cPage, $_GET['table']);
-                
+
         }
         else {
             $tablesName = $this->AppModel->getTables();

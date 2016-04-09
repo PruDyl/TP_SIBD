@@ -23,6 +23,7 @@ th
 {
 	font-weight: bold;
 	text-align: center;
+    border-top-width: 0px;
 }
 
 .container {
@@ -48,6 +49,7 @@ nav
 
 section
 {
+    overflow: auto;
 	padding: 20px;
 }
 
