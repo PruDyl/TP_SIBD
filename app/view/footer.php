@@ -1,3 +1,3 @@
 <footer>
-    <p>&copy; Groupe Dylan 2016</p>
+    <div class="panel-footer">&copy; Groupe Dylan 2016</div>
 </footer>

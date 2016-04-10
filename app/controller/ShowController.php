@@ -13,11 +13,14 @@ class ShowController extends AppController{
 
     	if(isset($_SESSION['user'])) {
             $userPriv = $this->AppModel->getUserPrivilleges();
-            $nbUsers = $this->AppModel->countData('joueur');
-            $averageMoney = $this->AppModel->getAverageData('argent','id_joueur', 'joueur');
-            $maxMoney = $this->AppModel->getMaxData('argent', 'joueur');
-            $minMoney = $this->AppModel->getMinData('argent', 'joueur');
-            array_push($dataTable, $userPriv, $nbUsers, $averageMoney, $maxMoney, $minMoney);
+            $nbUsers = $this->AppModel->countData('Joueur');
+            $averageMoney = $this->AppModel->getAverageData('argent','id_joueur', 'Joueur');
+            $maxMoney = $this->AppModel->getMaxData('argent', 'Joueur');
+            $minMoney = $this->AppModel->getMinData('argent', 'Joueur');
+            $statServer = $this->AppModel->getStatServer();
+
+            array_push($dataTable, $userPriv, $nbUsers, $averageMoney, $maxMoney, $minMoney, $statServer);
+
             $this->render('adminIndex', $dataTable);
     	}
     	else {

@@ -23,7 +23,11 @@ th
 {
 	font-weight: bold;
 	text-align: center;
-    border-top-width: 0px;
+}
+
+tr
+{
+	border: 1px solid #ddd !important;
 }
 
 .container {

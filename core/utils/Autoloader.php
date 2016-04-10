@@ -5,7 +5,6 @@ class Autoloader{
     }
 
     static function autoload($class) {
-
         if( file_exists (ROOT.'app/controller/'.$class.'.php')) {
             require(ROOT.'app/controller/'.$class.'.php');
         }
