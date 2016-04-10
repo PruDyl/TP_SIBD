@@ -1,6 +1,12 @@
 <section>
     <div class="page-header">
-        <h3>Choisissez une table à consulter : </h3>
+        <h3>Tables</h3>
+        <?php
+        if (isset($_GET['table'])) {
+            echo '<a class="btn btn-link" href="index.php?page=objets">Retour</a>';
+        }
+        ?>
+
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -27,7 +33,6 @@
                 }
                 echo "</tr>";
                 foreach ($t as $t1) {
-                    //var_dump($value2);
                     echo "<tr>";
                     echo '<td><input type="checkbox" class="checkbox" value="' . $t1[0] . '"></td>';
                     foreach ($t1 as $t2) {
@@ -38,11 +43,18 @@
                 echo "</table></div>";
 
                 for ($i = 1; $i <= $nbPage; $i++) {
-                    echo '<a class="btn btn-default" href="index.php?page=objets&table=' . $_GET['table'] . '&p=' . $i . '" role="button" >' . $i . '</a>';
+                    echo '<br /><a class="btn btn-default" href="index.php?page=objets&table=' . $_GET['table'] . '&p=' . $i . '" role="button" >' . $i . '</a>';
                 }
 
-                echo "<p>Action sur la selection :</p>";
-                echo '<button onclick="SuprElmnt();">Supprimer</button><br/><br/>';
+                echo "<div class=\"page-header\"><h4>Action sur la selection :</h4></div>";
+                $actions = false;
+                if ($params[5][0][5] == 'Y') {
+                    echo '<button class="btn btn-default" onclick="SuprElmnt();">Supprimer</button><br/><br/>';
+                    $actions = true;
+                }
+                if (!$actions) {
+                    echo 'Vous ne possédez pas les droits nécessaires';
+                }
             } else {
                 echo '<div class="page-header"><h3>Liste des tables</h3></div>';
                 $appmodel = new AppModel;
