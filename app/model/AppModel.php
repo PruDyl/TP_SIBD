@@ -257,15 +257,15 @@ class AppModel
 
     /*
      * Crée un joueur
-     * @param array[] contenant les attributs d'un player
+     * @param array[] contenant les attributs d'un joueur
      * @return int or false dernier id si ajout a réussi sinon false
      */
-    public function addPlayer($params = array())
+    public function addJoueur($params = array())
     {
         if (count($params) == 0)
             return false;
 
-        $sql = "INSERT INTO	Player (pseudo, mail, mot_de_passe, prenom, nom, sexe, date_naissance,
+        $sql = "INSERT INTO	Joueur (pseudo, mail, mot_de_passe, prenom, nom, sexe, date_naissance,
 									telephone, adresse_postal, avatar, description, adresse_site_web, 
 									argent, IP, date_heure_inscription, id_compte_bancaire, 
 									operation_bancaire)
@@ -292,8 +292,8 @@ class AppModel
         if (count($params) == 0)
             return false;
 
-        $sql = "INSERT INTO	Tache (id_item, id_player, action, frequence)
-				VALUES	('" . $params['id_item'] . "', '" . $params['id_player'] . "',
+        $sql = "INSERT INTO	Tache (id_item, id_joueur, action, frequence)
+				VALUES	('" . $params['id_item'] . "', '" . $params['id_joueur'] . "',
 						 '" . $params['action'] . "', '" . $params['frequence'] . "')";
 
         if ($this->pdo->exec($sql))
@@ -415,8 +415,8 @@ class AppModel
         if (count($params) == 0)
             return false;
 
-        $sql = "INSERT INTO	Club_hippique (id_player, id_infrastructure, capacite_accueil)
-				VALUES ('" . $params['id_player'] . "', '" . $params['id_infrastructure'] . "', '" . $params['capacite_accueil'] . "')";
+        $sql = "INSERT INTO	Club_hippique (id_joueur, id_infrastructure, capacite_accueil)
+				VALUES ('" . $params['id_joueur'] . "', '" . $params['id_infrastructure'] . "', '" . $params['capacite_accueil'] . "')";
 
         if ($this->pdo->exec($sql))
             return $this->pdo->lastInsertId();
@@ -434,11 +434,11 @@ class AppModel
         if (count($params) == 0)
             return false;
 
-        $sql = "INSERT INTO	Player (id_player, nom, race, description, resistance, endurance,
+        $sql = "INSERT INTO	Joueur (id_joueur, nom, race, description, resistance, endurance,
 									detente, vitesse, sociabilite, intelligence, temperament, sante, 
 									moral, stress, fatigue, faim, proprete, experience, 
 									niveau, etat_general, blessures, maladies, parasites)
-				VALUES ('" . $params['id_player'] . "', '" . $params['nom'] . "', '" . $params['race'] . "',
+				VALUES ('" . $params['id_joueur'] . "', '" . $params['nom'] . "', '" . $params['race'] . "',
 						'" . $params['description'] . "', '" . $params['resistance'] . "', '" . $params['endurance'] . "',
 						'" . $params['detente'] . "', '" . $params['vitesse'] . "', '" . $params['sociabilite'] . "',
 						'" . $params['intelligence'] . "', '" . $params['temperament'] . "', '" . $params['sante'] . "',
@@ -463,8 +463,8 @@ class AppModel
         if (count($params) == 0)
             return false;
 
-        $sql = "INSERT INTO	Centre_equestre (id_player, id_infrastructure, id_tache, capacite)
-				VALUES ('" . $params['id_player'] . "', '" . $params['id_infrastructure'] . "',
+        $sql = "INSERT INTO	Centre_equestre (id_joueur, id_infrastructure, id_tache, capacite)
+				VALUES ('" . $params['id_joueur'] . "', '" . $params['id_infrastructure'] . "',
 						'" . $params['id_tache'] . "', '" . $params['capacite'] . "')";
 
         if ($this->pdo->exec($sql))
@@ -478,19 +478,19 @@ class AppModel
      * @param array[] contenant les attributs d'un joueur
      * @return bool true si modif réussi sinon false
      */
-    public function modPlayer($params = array())
+    public function modJoueur($params = array())
     {
         if (count($params) == 0)
             return false;
 
-        $sql = "UPDATE	Player
+        $sql = "UPDATE	Joueur
 				SET		pseudo = '" . $params['pseudo'] . "', mail = '" . $params['mail'] . "', mot_de_passe = '" . sha1($params['mot_de_passe']) . "',
 						prenom = '" . $params['prenom'] . "', nom = '" . $params['nom'] . "', sexe = '" . $params['sexe'] . "',
 						date_naissance = '" . $params['date_naissance'] . "', telephone = '" . $params['telephone'] . "', adresse_postal = '" . $params['adresse_postal'] . "',
 						avatar = '" . $params['avatar'] . "', description = '" . $params['description'] . "', adresse_site_web = '" . $params['adresse_site_web'] . "',
 						argent = '" . $params['argent'] . "', IP = '" . $params['IP'] . "', date_heure_derniere_connexion = '" . $params['date_heure_derniere_connexion'] . "',
 						id_compte_bancaire = '" . $params['id_compte_bancaire'] . "', operation_bancaire = '" . $params['operation_bancaire'] . "'
-				WHERE	id_player = '" . $params['id_player'] . "'";
+				WHERE	id_joueur = '" . $params['id_joueur'] . "'";
 
         if ($this->pdo->exec($sql))
             return true;
@@ -509,7 +509,7 @@ class AppModel
             return false;
 
         $sql = "UPDATE	Tache
-				SET		id_item = '" . $params['id_item'] . "', id_player = '" . $params['id_player'] . "',
+				SET		id_item = '" . $params['id_item'] . "', id_joueur = '" . $params['id_joueur'] . "',
 						action = '" . $params['action'] . "', frequence = '" . $params['frequence'] . "'
 				WHERE	id_tache = '" . $params['id_tache'] . "'";
 
@@ -639,7 +639,7 @@ class AppModel
             return false;
 
         $sql = "UPDATE	Club_hippique
-				SET		id_player = '" . $params['id_player'] . "', id_infrastructure = '" . $params['id_infrastructure'] . "',
+				SET		id_joueur = '" . $params['id_joueur'] . "', id_infrastructure = '" . $params['id_infrastructure'] . "',
 						capacite_accueil = '" . $params['capacite_accueil'] . "'
 				WHERE	id_club = '" . $params['id_club'] . "')";
 
@@ -659,8 +659,8 @@ class AppModel
         if (count($params) == 0)
             return false;
 
-        $sql = "UPDATE	Player
-				SET		id_player = '" . $params['id_player'] . "', nom = '" . $params['nom'] . "', race = '" . $params['race'] . "',
+        $sql = "UPDATE	Joueur
+				SET		id_joueur = '" . $params['id_joueur'] . "', nom = '" . $params['nom'] . "', race = '" . $params['race'] . "',
 						description = '" . $params['description'] . "', resistance = '" . $params['resistance'] . "',
 						endurance = '" . $params['endurance'] . "', detente = '" . $params['detente'] . "', vitesse = '" . $params['vitesse'] . "',
 						sociabilite = '" . $params['sociabilite'] . "', intelligence = '" . $params['intelligence'] . "',
@@ -688,7 +688,7 @@ class AppModel
             return false;
 
         $sql = "UPDATE	Centre_equestre
-				SET		id_player = '" . $params['id_player'] . "', id_infrastructure = '" . $params['id_infrastructure'] . "',
+				SET		id_joueur = '" . $params['id_joueur'] . "', id_infrastructure = '" . $params['id_infrastructure'] . "',
 						id_tache = '" . $params['id_tache'] . "', capacite = '" . $params['capacite'] . "')
 				WHERE	id_centre = '" . $params['id_centre'] . "'";
 
@@ -703,16 +703,16 @@ class AppModel
      * @param array contenant le ou les id de joueurs
      * @return bool true si suppression réussi sinon false
      */
-    public function SuprJoueur($id_player = 0)
+    public function SuprJoueur($id_joueur = 0)
     {
-        if (count($id_player) == 0) {
+        if (count($id_joueur) == 0) {
             return false;
-        } elseif (count($id_player) > 0) {
+        } elseif (count($id_joueur) > 0) {
             $sql = "DELETE FROM	Joueur
-					WHERE		id_joueur = '" . $id_player[0] . "' ";
+					WHERE		id_joueur = '" . $id_joueur[0] . "' ";
 
-            if (count($id_player) > 1) {
-                foreach ($id_player as $id) {
+            if (count($id_joueur) > 1) {
+                foreach ($id_joueur as $id) {
                     $sql .= "OR	id_joueur = '" . $id . "' ";
                 }
             }

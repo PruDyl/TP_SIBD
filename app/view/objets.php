@@ -43,7 +43,7 @@
                 echo "</table></div>";
 
                 for ($i = 1; $i <= $nbPage; $i++) {
-                    echo '<br /><a class="btn btn-default" href="index.php?page=objets&table=' . $_GET['table'] . '&p=' . $i . '" role="button" >' . $i . '</a>';
+                    echo '<a class="btn btn-default" href="index.php?page=objets&table=' . $_GET['table'] . '&p=' . $i . '" role="button" >' . $i . '</a>';
                 }
 
                 echo "<div class=\"page-header\"><h4>Action sur la selection :</h4></div>";
