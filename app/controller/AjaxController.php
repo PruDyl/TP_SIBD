@@ -2,6 +2,13 @@
 include_once('../model/AppModel.php');
 
 $appModel = new AppModel;
+if(isset($_POST['id'] )) {
+	$_POST['id'] = htmlspecialchars($_POST['id']);
+}
+if(isset($_POST['table'])) {
+	$_POST['table'] = htmlspecialchars($_POST['table']);
+}
+
 
 switch ($_POST['action']) {
     case "ajax_supr_Centre_equestre":

@@ -102,4 +102,18 @@ class ShowController extends AppController{
         $this->render('footer');
         $this->render('script');
     }
+
+    function insertion($table, $param = []) {
+        $dataTable = [];
+        array_push($dataTable, 'Ajouter des données');
+        $this->render('head', $dataTable);
+
+        $this->render('header');
+        if(isset($_SESSION['user']) & isset($_GET['table'])) {
+
+        }
+        else {
+            $this->render('index');
+        }
+    }
 }

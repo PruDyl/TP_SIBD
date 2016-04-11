@@ -8,7 +8,7 @@
         ?>
 
     </div>
-    <div class="row">
+    <div class="row" id="dataZone">
         <div class="col-md-12">
             <?php
 
@@ -48,8 +48,16 @@
 
                 echo "<div class=\"page-header\"><h4>Action sur la selection :</h4></div>";
                 $actions = false;
+                if ($params[5][0][3] == 'Y') {
+                    echo '<a class="btn btn-default" href="index.php?page=insertion&table='.$_GET['table'].'">Ajouter</a>';
+                    $actions = true;
+                }
+                if ($params[5][0][4] == 'Y') {
+                    echo '<a class="btn btn-default">Editer</a>';
+                    $actions = true;
+                }
                 if ($params[5][0][5] == 'Y') {
-                    echo '<button class="btn btn-default" onclick="SuprElmnt();">Supprimer</button><br/><br/>';
+                    echo '<a class="btn btn-default" onclick="SuprElmnt();">Supprimer</a>';
                     $actions = true;
                 }
                 if (!$actions) {
