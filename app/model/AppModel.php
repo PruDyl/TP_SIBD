@@ -260,21 +260,21 @@ class AppModel
      * @param array[] contenant les attributs d'un joueur
      * @return int or false dernier id si ajout a réussi sinon false
      */
-    public function addJoueur($params = array())
+    public function addJoueur()
     {
-        if (count($params) == 0)
+        if (count($_POST) == 0)
             return false;
 
         $sql = "INSERT INTO	Joueur (pseudo, mail, mot_de_passe, prenom, nom, sexe, date_naissance,
 									telephone, adresse_postal, avatar, description, adresse_site_web, 
 									argent, IP, date_heure_inscription, id_compte_bancaire, 
 									operation_bancaire)
-				VALUES ('" . $params['pseudo'] . "', '" . $params['mail'] . "', '" . sha1($params['mot_de_passe']) . "',
-						'" . $params['prenom'] . "', '" . $params['nom'] . "', '" . $params['sexe'] . "',
-						'" . $params['date_naissance'] . "', '" . $params['telephone'] . "', '" . $params['adresse_postal'] . "',
-						'" . $params['avatar'] . "', '" . $params['description'] . "', '" . $params['adresse_site_web'] . "',
-						'" . $params['argent'] . "', '" . $params['IP'] . "', NOW(),
-						'" . $params['id_compte_bancaire'] . "', '" . $params['operation_bancaire'] . "')";
+				VALUES ('" . $_POST['pseudo'] . "', '" . $_POST['mail'] . "', '" . sha1($_POST['mot_de_passe']) . "',
+						'" . $_POST['prenom'] . "', '" . $_POST['nom'] . "', '" . $_POST['sexe'] . "',
+						'" . $_POST['date_naissance'] . "', '" . $_POST['telephone'] . "', '" . $_POST['adresse_postal'] . "',
+						'" . $_POST['avatar'] . "', '" . $_POST['description'] . "', '" . $_POST['adresse_site_web'] . "',
+						'" . $_POST['argent'] . "', '" . $_POST['IP'] . "', NOW(),
+						'" . $_POST['id_compte_bancaire'] . "', '" . $_POST['operation_bancaire'] . "')";
 
         if ($this->pdo->exec($sql))
             return $this->pdo->lastInsertId();
@@ -287,14 +287,14 @@ class AppModel
      * @param array[] contenant les attributs d'une tache
      * @return int or false dernier id si ajout a réussi sinon false
      */
-    public function addTache($params = array())
+    public function addTache()
     {
-        if (count($params) == 0)
+        if (count($_POST) == 0)
             return false;
 
         $sql = "INSERT INTO	Tache (id_item, id_joueur, action, frequence)
-				VALUES	('" . $params['id_item'] . "', '" . $params['id_joueur'] . "',
-						 '" . $params['action'] . "', '" . $params['frequence'] . "')";
+				VALUES	('" . $_POST['id_item'] . "', '" . $_POST['id_joueur'] . "',
+						 '" . $_POST['action'] . "', '" . $_POST['frequence'] . "')";
 
         if ($this->pdo->exec($sql))
             return $this->pdo->lastInsertId();
@@ -307,13 +307,13 @@ class AppModel
      * @param array[] contenant les attributs d'un journal
      * @return int or false dernier id si ajout a réussi sinon false
      */
-    public function addJournal($params = array())
+    public function addJournal()
     {
-        if (count($params) == 0)
+        if (count($_POST) == 0)
             return false;
 
         $sql = "INSERT INTO	Journal (titre, texte, image)
-				VALUES	('" . $params['titre'] . "', '" . $params['texte'] . "', '" . $params['image'] . "')";
+				VALUES	('" . $_POST['titre'] . "', '" . $_POST['texte'] . "', '" . $_POST['image'] . "')";
 
         if ($this->pdo->exec($sql))
             return $this->pdo->lastInsertId();
@@ -326,13 +326,13 @@ class AppModel
      * @param array[] contenant les attributs d'un item_concours
      * @return int or false dernier id si ajout a réussi sinon false
      */
-    public function addItemConcours($params = array())
+    public function addItemConcours()
     {
-        if (count($params) == 0)
+        if (count($_POST) == 0)
             return false;
 
         $sql = "INSERT INTO	Item_concours (id_item, id_concours, rang_concours)
-				VALUES ('" . $params['id_item'] . "', '" . $params['id_concours'] . "', '" . $params['rang_concours'] . "')";
+				VALUES ('" . $_POST['id_item'] . "', '" . $_POST['id_concours'] . "', '" . $_POST['rang_concours'] . "')";
 
         if ($this->pdo->exec($sql))
             return $this->pdo->lastInsertId();
@@ -345,15 +345,15 @@ class AppModel
      * @param array[] contenant les attributs d'un item
      * @return int or false dernier id si ajout a réussi sinon false
      */
-    public function addItem($params = array())
+    public function addItem()
     {
-        if (count($params) == 0)
+        if (count($_POST) == 0)
             return false;
 
         $sql = "INSERT INTO	Item (id_infrastructure, id_cheval, description, type, niveau, famille, prix)
-				VALUES ('" . $params['id_infrastructure'] . "', '" . $params['id_cheval'] . "', '" . $params['description'] . "',
-						'" . $params['type'] . "', '" . $params['niveau'] . "', '" . $params['famille'] . "',
-						'" . $params['prix'] . "')";
+				VALUES ('" . $_POST['id_infrastructure'] . "', '" . $_POST['id_cheval'] . "', '" . $_POST['description'] . "',
+						'" . $_POST['type'] . "', '" . $_POST['niveau'] . "', '" . $_POST['famille'] . "',
+						'" . $_POST['prix'] . "')";
 
         if ($this->pdo->exec($sql))
             return $this->pdo->lastInsertId();
@@ -366,18 +366,18 @@ class AppModel
      * @param array[] contenant les attributs d'une infrastructure
      * @return int or false dernier id si ajout a réussi sinon false
      */
-    public function addInfrastructure($params = array())
+    public function addInfrastructure()
     {
-        if (count($params) == 0)
+        if (count($_POST) == 0)
             return false;
 
         $sql = "INSERT INTO	Infrastructure (id_centre, id_club, type_infrastructure, niveau,
 											 description, famille_infrastructure, prix, conso_ressources, 
 											 capacite_stock_item, capacite_stock_cheval, choix_batiment)
-				VALUES ('" . $params['id_centre'] . "', '" . $params['id_club'] . "', '" . $params['type_infrastructure'] . "',
-						'" . $params['niveau'] . "', '" . $params['description'] . "', '" . $params['famille_infrastructure'] . "',
-						'" . $params['prix'] . "', '" . $params['conso_ressources'] . "', '" . $params['capacite_stock_item'] . "',
-						'" . $params['capacite_stock_cheval'] . "', '" . $params['choix_batiment'] . "')";
+				VALUES ('" . $_POST['id_centre'] . "', '" . $_POST['id_club'] . "', '" . $_POST['type_infrastructure'] . "',
+						'" . $_POST['niveau'] . "', '" . $_POST['description'] . "', '" . $_POST['famille_infrastructure'] . "',
+						'" . $_POST['prix'] . "', '" . $_POST['conso_ressources'] . "', '" . $_POST['capacite_stock_item'] . "',
+						'" . $_POST['capacite_stock_cheval'] . "', '" . $_POST['choix_batiment'] . "')";
 
         if ($this->pdo->exec($sql))
             return $this->pdo->lastInsertId();
@@ -390,14 +390,14 @@ class AppModel
      * @param array[] contenant les attributs d'un concours
      * @return int or false dernier id si ajout a réussi sinon false
      */
-    public function addConcours($params = array())
+    public function addConcours()
     {
-        if (count($params) == 0)
+        if (count($_POST) == 0)
             return false;
 
         $sql = "INSERT INTO	Concours (id_item, id_infrastructure, date_debut, date_fin)
-				VALUES ('" . $params['id_item'] . "', '" . $params['id_infrastructure'] . "',
-						'" . $params['date_debut'] . "', '" . $params['date_fin'] . "')";
+				VALUES ('" . $_POST['id_item'] . "', '" . $_POST['id_infrastructure'] . "',
+						'" . $_POST['date_debut'] . "', '" . $_POST['date_fin'] . "')";
 
         if ($this->pdo->exec($sql))
             return $this->pdo->lastInsertId();
@@ -410,13 +410,13 @@ class AppModel
      * @param array[] contenant les attributs d'un club hippique
      * @return int or false dernier id si ajout a réussi sinon false
      */
-    public function addClubHippique($params = array())
+    public function addClubHippique()
     {
-        if (count($params) == 0)
+        if (count($_POST) == 0)
             return false;
 
         $sql = "INSERT INTO	Club_hippique (id_joueur, id_infrastructure, capacite_accueil)
-				VALUES ('" . $params['id_joueur'] . "', '" . $params['id_infrastructure'] . "', '" . $params['capacite_accueil'] . "')";
+				VALUES ('" . $_POST['id_joueur'] . "', '" . $_POST['id_infrastructure'] . "', '" . $_POST['capacite_accueil'] . "')";
 
         if ($this->pdo->exec($sql))
             return $this->pdo->lastInsertId();
@@ -429,23 +429,23 @@ class AppModel
      * @param array[] contenant les attributs d'un cheval
      * @return int or false dernier id si ajout a réussi sinon false
      */
-    public function addCheval($params = array())
+    public function addCheval()
     {
-        if (count($params) == 0)
+        if (count($_POST) == 0)
             return false;
 
         $sql = "INSERT INTO	Joueur (id_joueur, nom, race, description, resistance, endurance,
 									detente, vitesse, sociabilite, intelligence, temperament, sante, 
 									moral, stress, fatigue, faim, proprete, experience, 
 									niveau, etat_general, blessures, maladies, parasites)
-				VALUES ('" . $params['id_joueur'] . "', '" . $params['nom'] . "', '" . $params['race'] . "',
-						'" . $params['description'] . "', '" . $params['resistance'] . "', '" . $params['endurance'] . "',
-						'" . $params['detente'] . "', '" . $params['vitesse'] . "', '" . $params['sociabilite'] . "',
-						'" . $params['intelligence'] . "', '" . $params['temperament'] . "', '" . $params['sante'] . "',
-						'" . $params['moral'] . "', '" . $params['stress'] . "', '" . $params['fatigue'] . "',
-						'" . $params['faim'] . "', '" . $params['proprete'] . "', '" . $params['experience'] . "',
-						'" . $params['niveau'] . "', '" . $params['etat_general'] . "', '" . $params['blessures'] . "',
-						'" . $params['maladies'] . "', '" . $params['parasites'] . "')";
+				VALUES ('" . $_POST['id_joueur'] . "', '" . $_POST['nom'] . "', '" . $_POST['race'] . "',
+						'" . $_POST['description'] . "', '" . $_POST['resistance'] . "', '" . $_POST['endurance'] . "',
+						'" . $_POST['detente'] . "', '" . $_POST['vitesse'] . "', '" . $_POST['sociabilite'] . "',
+						'" . $_POST['intelligence'] . "', '" . $_POST['temperament'] . "', '" . $_POST['sante'] . "',
+						'" . $_POST['moral'] . "', '" . $_POST['stress'] . "', '" . $_POST['fatigue'] . "',
+						'" . $_POST['faim'] . "', '" . $_POST['proprete'] . "', '" . $_POST['experience'] . "',
+						'" . $_POST['niveau'] . "', '" . $_POST['etat_general'] . "', '" . $_POST['blessures'] . "',
+						'" . $_POST['maladies'] . "', '" . $_POST['parasites'] . "')";
 
         if ($this->pdo->exec($sql))
             return $this->pdo->lastInsertId();
@@ -458,14 +458,14 @@ class AppModel
      * @param array[] contenant les attributs d'un centre equestre
      * @return int or false dernier id si ajout a réussi sinon false
      */
-    public function addCentreEquestre($params = array())
+    public function addCentreEquestre()
     {
-        if (count($params) == 0)
+        if (count($_POST) == 0)
             return false;
 
         $sql = "INSERT INTO	Centre_equestre (id_joueur, id_infrastructure, id_tache, capacite)
-				VALUES ('" . $params['id_joueur'] . "', '" . $params['id_infrastructure'] . "',
-						'" . $params['id_tache'] . "', '" . $params['capacite'] . "')";
+				VALUES ('" . $_POST['id_joueur'] . "', '" . $_POST['id_infrastructure'] . "',
+						'" . $_POST['id_tache'] . "', '" . $_POST['capacite'] . "')";
 
         if ($this->pdo->exec($sql))
             return $this->pdo->lastInsertId();
