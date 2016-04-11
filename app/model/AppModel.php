@@ -187,7 +187,7 @@ class AppModel
         //var_dump($result);
         return $result;
     }
-
+    
     public function getDataLimit($table, $perPage, $cPage)
     {
         $requestStr = '
@@ -217,6 +217,196 @@ class AppModel
         $result = $request->fetchAll(PDO::FETCH_NUM);
         return $result;
     }
+    
+    /**
+     * Récupère un centre equestre
+     * @param int $id
+     */
+    public function getCentreEquestre($id = 0)
+    {
+    	if($id == 0)
+    		return false;
+    		 
+    	$sql = "SELECT	*
+    			FROM	Centre_equestre 
+    			WHERE	id_centre = '".$id."'";
+    	
+    	$query = $this->pdo->query($sql);
+    	
+    	return $query->fetchAll(PDO::FETCH_NUM);
+   
+    }
+    
+    /**
+     * Récupère un cheval
+     * @param int $id
+     */
+    public function getCheval($id = 0)
+    {
+    	if($id == 0)
+    		return false;
+    		 
+    	$sql = "SELECT	*
+    			FROM	Cheval
+    			WHERE	id_cheval = '".$id."'";
+    		 
+    	$query = $this->pdo->query($sql);
+    		 
+    	return $query->fetchAll(PDO::FETCH_ASSOC);
+    		 
+    }
+    
+    /**
+     * Récupère un club
+     * @param int $id
+     */
+    public function getClubHippique($id = 0)
+    {
+    	if($id == 0)
+    		return false;
+    		 
+    	$sql = "SELECT	*
+    			FROM	Club_hippique
+    			WHERE	id_club = '".$id."'";
+    		 
+    	$query = $this->pdo->query($sql);
+    		 
+    	return $query->fetchAll(PDO::FETCH_ASSOC);
+    		 
+    }
+    
+    /**
+     * Récupère un concours
+     * @param int $id
+     */
+    public function getConcours($id = 0)
+    {
+    	if($id == 0)
+    		return false;
+    		 
+    	$sql = "SELECT	*
+    			FROM	Concours
+    			WHERE	id_concours = '".$id."'";
+    		 
+    	$query = $this->pdo->query($sql);
+    		 
+    	return $query->fetchAll(PDO::FETCH_ASSOC);
+    		 
+    }
+    
+    /**
+     * Récupère une infrastructure
+     * @param int $id
+     */
+    public function getInfrastructure($id = 0)
+    {
+    	if($id == 0)
+    		return false;
+    		 
+    	$sql = "SELECT	*
+    			FROM	Infrastructure
+    			WHERE	id_infrastructure = '".$id."'";
+    		 
+    	$query = $this->pdo->query($sql);
+    		 
+    	return $query->fetchAll(PDO::FETCH_ASSOC);
+    		 
+    }
+    
+    /**
+     * Récupère un item
+     * @param int $id
+     */
+    public function getItem($id = 0)
+    {
+    	if($id == 0)
+    		return false;
+    		 
+    	$sql = "SELECT	*
+    			FROM	Item
+    			WHERE	id_item = '".$id."'";
+    		 
+    	$query = $this->pdo->query($sql);
+    		 
+    	return $query->fetchAll(PDO::FETCH_ASSOC);
+    		 
+    }
+    
+    /**
+     * Récupère un item_concours
+     * @param int $id
+     */
+    public function getItemConcours($id = 0)
+    {
+    	if($id == 0)
+    		return false;
+    		 
+    	$sql = "SELECT	*
+    			FROM	Item_concours
+    			WHERE	id_item_concours = '".$id."'";
+    		 
+    	$query = $this->pdo->query($sql);
+    		 
+    	return $query->fetchAll(PDO::FETCH_ASSOC);
+    		 
+    }
+    
+    /**
+     * Récupère un joueur
+     * @param int $id
+     */
+    public function getJoueur($id = 0)
+    {
+    	if($id == 0)
+    		return false;
+    		 
+    	$sql = "SELECT	*
+    			FROM	Joueur
+    			WHERE	id_joueur = '".$id."'";
+    		 
+    	$query = $this->pdo->query($sql);
+    		 
+    	return $query->fetchAll(PDO::FETCH_ASSOC);
+    		 
+    }
+    
+    /**
+     * Récupère un journal
+     * @param int $id
+     */
+    public function getJournal($id = 0)
+    {
+    	if($id == 0)
+    		return false;
+    		 
+    	$sql = "SELECT	*
+    			FROM	Journal
+    			WHERE	id_journal = '".$id."'";
+    		 
+    	$query = $this->pdo->query($sql);
+    		 
+    	return $query->fetchAll(PDO::FETCH_ASSOC);
+    		 
+    }
+    
+    /**
+     * Récupère une tache
+     * @param int $id
+     */
+    public function getTache($id = 0)
+    {
+    	if($id == 0)
+    		return false;
+    		 
+    	$sql = "SELECT	*
+    			FROM	Tache
+    			WHERE	id_tache = '".$id."'";
+    		 
+    	$query = $this->pdo->query($sql);
+    		 
+    	return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 
     /*
      * Compte le nombre de lignes d'une table

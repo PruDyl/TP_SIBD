@@ -28,3 +28,23 @@ function SuprElmnt() {
 	       }
 	});
 }
+
+function ModElmnt(id) {
+	var table = document.getElementById("table").getAttribute("name");
+	
+	$.ajax({
+	       url : '../../app/controller/AjaxController.php',
+	       type : 'POST',
+	       data : 'action=ajax_mod_'+table+'&id='+id,
+	       dataType : 'json',
+	       success : function(data){
+	           //console.log(data);
+	    	   alert(data['msg']);
+	    	   location.reload();
+	    	   	
+	       },
+	       error : function(request, error) {       
+	    	   console.log("Erreur : "+error);
+	       }
+	});
+}

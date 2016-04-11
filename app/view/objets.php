@@ -25,7 +25,7 @@
 	<div class='page-header'>
         <h3>Table " . $_GET['table'] . "</h3>
     </div>
-	<div class='table-responsive'><table border=1 class='table sortable' id='table' name='" . $_GET['table'] . "'><tr><th></th>";
+	<div class='table-responsive'><table border=1 class='table sortable' id='table' name='" . $_GET['table'] . "'><tr><th>Modifier</th><th>Cocher</th>";
                 foreach ($d as $d1) {
                     foreach ($d1 as $tr) {
                         echo "<th> " . $tr . " </th>";
@@ -34,7 +34,7 @@
                 echo "</tr>";
                 foreach ($t as $t1) {
                     echo "<tr>";
-                    echo '<td><input type="checkbox" class="checkbox" value="' . $t1[0] . '"></td>';
+                    echo '<td><a class="btn btn-default" href="index.php?page=modification&table='.$_GET['table'].'&id='.$t1[0].'">Modif</a></td><td><input type="checkbox" class="checkbox" value="' . $t1[0] . '"></td>';
                     foreach ($t1 as $t2) {
                         echo "<td>" . $t2 . "</td>";
                     }

@@ -116,4 +116,23 @@ class ShowController extends AppController{
             $this->render('index');
         }
     }
+    
+    /**
+     * Affiche la page de modification
+     * @param string table contenant la table à afficher
+     */
+    function modification($table) {
+    	$dataTable = [];
+    	array_push($dataTable, 'Modifier des données');
+    	$this->render('head', $dataTable);
+    	
+    	$this->render('header');
+    	if(isset($_SESSION['user']) & isset($_GET['table'])) {
+    		$dataTable = $this->AppModel->getColumnData($_GET['table']);
+    		$this->render('modification', $dataTable);
+    	}
+    	else {
+    		$this->render('index');
+    	}
+    }
 }
